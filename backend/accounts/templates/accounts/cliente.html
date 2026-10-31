@@ -1,0 +1,115 @@
+{% extends 'accounts/base.html' %}
+{% block title %}Panel Cliente - SGAB{% endblock %}
+
+{% block content %}
+<!-- Cabecera del panel -->
+<section class="panel-hero panel-hero-cliente">
+    <span class="badge badge-cliente">Cliente</span>
+    <h1>Panel del Cliente</h1>
+    <p>
+        Desde aquí gestionarás tus envíos: desde la solicitud inicial hasta la
+        confirmación de entrega.
+    </p>
+    <span class="panel-status">Entrega 1 · Autenticación y roles</span>
+</section>
+
+<!-- Contenido principal y barra lateral -->
+<div class="panel-layout">
+    <div class="panel-main">
+        <section class="card panel-block" aria-labelledby="flujo-cliente">
+            <div class="card-header">
+                <h2 id="flujo-cliente">Cómo funcionará tu panel</h2>
+                <p>El recorrido de cada envío dentro de SGAB.</p>
+            </div>
+
+            <ol class="workflow">
+                <li class="workflow-step">
+                    <div>
+                        <h3>Registra tu envío</h3>
+                        <p>Indica remitente, destinatario, artículo, peso y direcciones.</p>
+                    </div>
+                </li>
+                <li class="workflow-step">
+                    <div>
+                        <h3>Recibe la asignación</h3>
+                        <p>Un repartidor será asignado para trasladar tu envío.</p>
+                    </div>
+                </li>
+                <li class="workflow-step">
+                    <div>
+                        <h3>Sigue el estado</h3>
+                        <p>Consulta el avance y el historial con tu código de rastreo.</p>
+                    </div>
+                </li>
+                <li class="workflow-step">
+                    <div>
+                        <h3>Confirma la entrega</h3>
+                        <p>Verifica el cierre del envío y consulta su estado final.</p>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
+        <section class="card panel-block" aria-labelledby="funciones-cliente">
+            <div class="card-header">
+                <h2 id="funciones-cliente">Próximas funcionalidades</h2>
+                <p>Estas herramientas se habilitarán en las siguientes entregas.</p>
+            </div>
+
+            <div class="feature-grid">
+                <article class="feature-card">
+                    <span class="feature-index">01</span>
+                    <span class="feature-tag feature-tag-soon">Próximamente</span>
+                    <h3>Registrar envíos</h3>
+                    <p>Crea solicitudes con datos del paquete, direcciones y tipo de servicio.</p>
+                </article>
+                <article class="feature-card">
+                    <span class="feature-index">02</span>
+                    <span class="feature-tag feature-tag-soon">Próximamente</span>
+                    <h3>Seguir mis envíos</h3>
+                    <p>Consulta el estado y el historial mediante tu código de rastreo.</p>
+                </article>
+                <article class="feature-card">
+                    <span class="feature-index">03</span>
+                    <span class="feature-tag feature-tag-soon">Próximamente</span>
+                    <h3>Tarifas y pagos</h3>
+                    <p>Revisa el costo del servicio y el estado de pago de cada envío.</p>
+                </article>
+            </div>
+        </section>
+    </div>
+
+    <!-- Estado del módulo y actividad -->
+    <aside class="panel-side" aria-label="Estado del panel de cliente">
+        <section class="card panel-block" aria-labelledby="estado-cliente">
+            <div class="card-header">
+                <h2 id="estado-cliente">Estado del módulo</h2>
+            </div>
+
+            <ul class="status-list">
+                <li class="status-item">
+                    <span>Autenticación y roles</span>
+                    <span class="status-value status-value-done">Disponible</span>
+                </li>
+                <li class="status-item">
+                    <span>Panel de cliente</span>
+                    <span class="status-value status-value-done">Disponible</span>
+                </li>
+                <li class="status-item">
+                    <span>Gestión de envíos</span>
+                    <span class="status-value status-value-soon">Próximamente</span>
+                </li>
+            </ul>
+
+            <p class="panel-note">
+                La gestión de envíos se desarrollará en la próxima entrega del proyecto.
+            </p>
+        </section>
+
+        <div class="empty-state panel-activity">
+            <p class="empty-state-text">Aún no tienes envíos registrados</p>
+            <p>Cuando crees tu primer envío, aparecerá aquí con su estado y código de rastreo.</p>
+        </div>
+    </aside>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+services:
+  # Servicio Backend con Django
+  backend:
+    build: ./backend
+    container_name: envios_django
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  # Servicio Frontend con Vite
+  frontend:
+    build: ./frontend
+    container_name: envios_vite
+    command: npm run dev -- --host 0.0.0.0
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    stdin_open: true
+    tty: true

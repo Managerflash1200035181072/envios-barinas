@@ -1,0 +1,115 @@
+{% extends 'accounts/base.html' %}
+{% block title %}Panel Repartidor - SGAB{% endblock %}
+
+{% block content %}
+<!-- Cabecera del panel -->
+<section class="panel-hero panel-hero-repartidor">
+    <span class="badge badge-repartidor">Repartidor</span>
+    <h1>Panel del Repartidor</h1>
+    <p>
+        Aquí consultarás los envíos asignados y actualizarás su estado durante
+        el trayecto.
+    </p>
+    <span class="panel-status">Entrega 1 · Autenticación y roles</span>
+</section>
+
+<!-- Contenido principal y barra lateral -->
+<div class="panel-layout">
+    <div class="panel-main">
+        <section class="card panel-block" aria-labelledby="flujo-repartidor">
+            <div class="card-header">
+                <h2 id="flujo-repartidor">Cómo funcionará tu panel</h2>
+                <p>El recorrido operativo de cada envío asignado.</p>
+            </div>
+
+            <ol class="workflow">
+                <li class="workflow-step">
+                    <div>
+                        <h3>Recibe la asignación</h3>
+                        <p>El administrador te asignará los envíos que debes trasladar.</p>
+                    </div>
+                </li>
+                <li class="workflow-step">
+                    <div>
+                        <h3>Consulta los datos</h3>
+                        <p>Revisa destinatario, dirección y características del paquete.</p>
+                    </div>
+                </li>
+                <li class="workflow-step">
+                    <div>
+                        <h3>Actualiza el estado</h3>
+                        <p>Registra el avance: pendiente, en tránsito, entregado o cancelado.</p>
+                    </div>
+                </li>
+                <li class="workflow-step">
+                    <div>
+                        <h3>Confirma la entrega</h3>
+                        <p>Cierra el envío cuando el paquete haya sido recibido.</p>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
+        <section class="card panel-block" aria-labelledby="funciones-repartidor">
+            <div class="card-header">
+                <h2 id="funciones-repartidor">Próximas funcionalidades</h2>
+                <p>Estas herramientas se habilitarán en las siguientes entregas.</p>
+            </div>
+
+            <div class="feature-grid">
+                <article class="feature-card">
+                    <span class="feature-index">01</span>
+                    <span class="feature-tag feature-tag-soon">Próximamente</span>
+                    <h3>Envíos asignados</h3>
+                    <p>Consulta los paquetes que tienes pendientes de trasladar.</p>
+                </article>
+                <article class="feature-card">
+                    <span class="feature-index">02</span>
+                    <span class="feature-tag feature-tag-soon">Próximamente</span>
+                    <h3>Actualizar estado</h3>
+                    <p>Registra el avance del envío en cada etapa del trayecto.</p>
+                </article>
+                <article class="feature-card">
+                    <span class="feature-index">03</span>
+                    <span class="feature-tag feature-tag-soon">Próximamente</span>
+                    <h3>Historial de entregas</h3>
+                    <p>Revisa los envíos que ya fueron completados.</p>
+                </article>
+            </div>
+        </section>
+    </div>
+
+    <!-- Estado del módulo y actividad -->
+    <aside class="panel-side" aria-label="Estado del panel de repartidor">
+        <section class="card panel-block" aria-labelledby="estado-repartidor">
+            <div class="card-header">
+                <h2 id="estado-repartidor">Estado del módulo</h2>
+            </div>
+
+            <ul class="status-list">
+                <li class="status-item">
+                    <span>Autenticación y roles</span>
+                    <span class="status-value status-value-done">Disponible</span>
+                </li>
+                <li class="status-item">
+                    <span>Panel de repartidor</span>
+                    <span class="status-value status-value-done">Disponible</span>
+                </li>
+                <li class="status-item">
+                    <span>Asignación y seguimiento</span>
+                    <span class="status-value status-value-soon">Próximamente</span>
+                </li>
+            </ul>
+
+            <p class="panel-note">
+                La asignación y el seguimiento de envíos se desarrollarán en la próxima entrega.
+            </p>
+        </section>
+
+        <div class="empty-state panel-activity">
+            <p class="empty-state-text">Sin envíos asignados</p>
+            <p>Los envíos que te asigne el administrador aparecerán aquí.</p>
+        </div>
+    </aside>
+</div>
+{% endblock %}

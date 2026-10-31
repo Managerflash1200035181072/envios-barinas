@@ -1,0 +1,72 @@
+{% extends 'accounts/base.html' %}
+{% block title %}Inicio - SGAB{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="card">
+    <div class="card-header">
+        <h2>Bienvenido al Sistema de Envíos de Barinas</h2>
+        <p>SGAB - Gestión centralizada de envíos y encomiendas</p>
+    </div>
+
+    <div class="dashboard-grid">
+        <div class="role-info">
+            <p>
+                <strong>Usuario:</strong> {{ user.username }}<br>
+                <strong>Roles:</strong>
+                {% if user.groups.all %}
+                    {% for group in user.groups.all %}
+                        {{ group.name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                {% else %}
+                    Sin rol asignado
+                {% endif %}
+            </p>
+        </div>
+
+        <div>
+            <p class="text-secondary mb-1">
+                Desde aquí puedes acceder a las funcionalidades disponibles según tu rol en el sistema.
+            </p>
+
+            <div class="quick-actions">
+                {% if user.is_superuser %}
+                    <a href="{% url 'panel_admin' %}" class="btn btn-primary">Ir al Panel Administrador</a>
+                {% endif %}
+                {% for group in user.groups.all %}
+                    {% if group.name == 'Cliente' %}
+                        <a href="{% url 'panel_cliente' %}" class="btn btn-primary">Ir al Panel Cliente</a>
+                    {% elif group.name == 'Repartidor' %}
+                        <a href="{% url 'panel_repartidor' %}" class="btn btn-primary">Ir al Panel Repartidor</a>
+                    {% elif group.name == 'Administrador' and not user.is_superuser %}
+                        <a href="{% url 'panel_admin' %}" class="btn btn-primary">Ir al Panel Administrador</a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="card hero">
+    <div class="card-header">
+        <h2>Bienvenido a SGAB</h2>
+        <p>Sistema de Gestión de Envíos de Artículos en Barinas</p>
+    </div>
+
+    <p class="text-secondary mb-1-5">
+        Centraliza el registro, la asignación y el seguimiento de tus envíos
+        de forma sencilla y segura.
+    </p>
+
+    <div class="quick-actions">
+        <a href="{% url 'login' %}" class="btn btn-primary">Iniciar sesión</a>
+        <a href="{% url 'registro' %}" class="btn btn-secondary">Registrarse</a>
+    </div>
+
+    <div class="empty-state">
+        <p class="empty-state-text"><strong>Consulta pública de envíos</strong></p>
+        <p>El rastreo por código estará disponible en la próxima entrega del proyecto.</p>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

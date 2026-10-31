@@ -1,0 +1,9 @@
+# Archivos que no deben copiarse dentro de la imagen del backend
+__pycache__/
+*.pyc
+*.pyo
+db.sqlite3
+.venv/
+venv/
+.git/
+.gitignore

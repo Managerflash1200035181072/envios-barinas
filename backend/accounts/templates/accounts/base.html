@@ -1,0 +1,99 @@
+{% load static static_version %}
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}SGAB - Envíos Barinas{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% versioned_static 'accounts/css/style.css' %}">
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{% url 'home' %}" class="brand">SGAB - Envíos Barinas</a>
+            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">🌙</button>
+            <div class="nav-links">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'home' %}">Inicio</a>
+                    {% if user.is_superuser %}
+                        <a href="{% url 'panel_admin' %}">Panel Admin</a>
+                    {% endif %}
+                    {% for group in user.groups.all %}
+                        {% if group.name == 'Cliente' %}
+                            <a href="{% url 'panel_cliente' %}">Panel Cliente</a>
+                        {% elif group.name == 'Repartidor' %}
+                            <a href="{% url 'panel_repartidor' %}">Panel Repartidor</a>
+                        {% elif group.name == 'Administrador' and not user.is_superuser %}
+                            <a href="{% url 'panel_admin' %}">Panel Admin</a>
+                        {% endif %}
+                    {% endfor %}
+                    <form method="post" action="{% url 'logout' %}" class="logout-form">
+                        {% csrf_token %}
+                        <button type="submit" class="link-button">Cerrar sesión</button>
+                    </form>
+                    <span class="nav-user">{% if user.get_full_name %}Hola, {{ user.get_full_name }}{% else %}Hola, {{ user.username }}{% endif %}</span>
+                {% else %}
+                    <a href="{% url 'home' %}">Inicio</a>
+                    <a href="{% url 'login' %}">Iniciar sesión</a>
+                    <a href="{% url 'registro' %}">Registrarse</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="footer">
+        <p>&copy; 2026 SGAB - Sistema de Gestión de Envíos de Artículos en Barinas</p>
+    </footer>
+
+    <!-- Script para tema claro/oscuro -->
+    <script>
+        (function() {
+            const html = document.documentElement;
+            const toggleBtn = document.getElementById('theme-toggle');
+            const STORAGE_KEY = 'sgab-theme';
+
+            function setTheme(theme) {
+                html.setAttribute('data-theme', theme);
+                if (toggleBtn) {
+                    toggleBtn.textContent = theme === 'dark' ? '☀️' : '🌙';
+                    toggleBtn.setAttribute('aria-label', theme === 'dark' ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro');
+                }
+            }
+
+            // Inicializar tema
+            const savedTheme = localStorage.getItem(STORAGE_KEY);
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+            setTheme(initialTheme);
+
+            // Toggle al hacer click
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', function() {
+                    const currentTheme = html.getAttribute('data-theme');
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    localStorage.setItem(STORAGE_KEY, newTheme);
+                    setTheme(newTheme);
+                });
+            }
+        })();
+    </script>
+</body>
+</html>

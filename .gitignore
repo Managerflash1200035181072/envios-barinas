@@ -1,0 +1,14 @@
+# Compilados de Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Dependencias Node
+node_modules/
+
+# Base de Datos Local
+db.sqlite3
+
+# Variables Entorno y Logs
+.env
+*.log

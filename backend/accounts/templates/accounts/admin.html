@@ -1,0 +1,125 @@
+{% extends 'accounts/base.html' %}
+{% block title %}Panel Administrador - SGAB{% endblock %}
+
+{% block content %}
+<!-- Cabecera del panel -->
+<section class="panel-hero panel-hero-admin">
+    <span class="badge badge-admin">Administrador</span>
+    <h1>Panel de Administración</h1>
+    <p>
+        Aquí supervisarás usuarios, roles, asignaciones y reportes del sistema
+        SGAB.
+    </p>
+    <span class="panel-status">Entrega 1 · Autenticación y roles</span>
+</section>
+
+<!-- Contenido principal y barra lateral -->
+<div class="panel-layout">
+    <div class="panel-main">
+        <section class="card panel-block" aria-labelledby="flujo-admin">
+            <div class="card-header">
+                <h2 id="flujo-admin">Cómo funcionará tu panel</h2>
+                <p>El control operativo del sistema, de principio a fin.</p>
+            </div>
+
+            <ol class="workflow">
+                <li class="workflow-step">
+                    <div>
+                        <h3>Gestiona usuarios y roles</h3>
+                        <p>Crea cuentas y asigna permisos de administrador, repartidor o cliente.</p>
+                    </div>
+                </li>
+                <li class="workflow-step">
+                    <div>
+                        <h3>Asigna repartidores</h3>
+                        <p>Distribuye los envíos entre los repartidores disponibles.</p>
+                    </div>
+                </li>
+                <li class="workflow-step">
+                    <div>
+                        <h3>Supervisa los envíos</h3>
+                        <p>Consulta estados, trazabilidad y avance de cada paquete.</p>
+                    </div>
+                </li>
+                <li class="workflow-step">
+                    <div>
+                        <h3>Genera reportes</h3>
+                        <p>Obtén indicadores operativos y resúmenes de la gestión.</p>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
+        <section class="card panel-block" aria-labelledby="funciones-admin">
+            <div class="card-header">
+                <h2 id="funciones-admin">Módulos del panel</h2>
+                <p>Lo disponible hoy y lo que se habilitará en próximas entregas.</p>
+            </div>
+
+            <div class="feature-grid">
+                <article class="feature-card">
+                    <span class="feature-index">01</span>
+                    <span class="feature-tag feature-tag-done">Disponible</span>
+                    <h3>Usuarios y roles</h3>
+                    <p>Gestiona cuentas, grupos y permisos desde Django Admin.</p>
+                </article>
+                <article class="feature-card">
+                    <span class="feature-index">02</span>
+                    <span class="feature-tag feature-tag-soon">Próximamente</span>
+                    <h3>Asignación de repartidores</h3>
+                    <p>Distribuye envíos y controla la carga de cada repartidor.</p>
+                </article>
+                <article class="feature-card">
+                    <span class="feature-index">03</span>
+                    <span class="feature-tag feature-tag-soon">Próximamente</span>
+                    <h3>Reportes y tarifas</h3>
+                    <p>Consulta indicadores de operación y configuración de tarifas.</p>
+                </article>
+            </div>
+        </section>
+    </div>
+
+    <!-- Estado del módulo y actividad -->
+    <aside class="panel-side" aria-label="Estado del panel de administración">
+        <section class="card panel-block" aria-labelledby="estado-admin">
+            <div class="card-header">
+                <h2 id="estado-admin">Estado del módulo</h2>
+            </div>
+
+            <ul class="status-list">
+                <li class="status-item">
+                    <span>Usuarios, grupos y permisos</span>
+                    <span class="status-value status-value-done">Disponible</span>
+                </li>
+                <li class="status-item">
+                    <span>Panel administrador</span>
+                    <span class="status-value status-value-done">Disponible</span>
+                </li>
+                <li class="status-item">
+                    <span>Asignación y reportes</span>
+                    <span class="status-value status-value-soon">Próximamente</span>
+                </li>
+            </ul>
+
+            <p class="panel-note">
+                La asignación de envíos y los reportes se desarrollarán en la próxima entrega.
+            </p>
+        </section>
+
+        <!-- Acceso real al panel nativo de Django -->
+        <section class="card panel-block" aria-labelledby="acceso-admin">
+            <div class="card-header">
+                <h2 id="acceso-admin">Acceso disponible</h2>
+                <p>Administra usuarios, grupos y permisos desde el panel nativo.</p>
+            </div>
+
+            <a href="{% url 'admin:index' %}" class="btn btn-primary btn-block">Abrir Django Admin</a>
+        </section>
+
+        <div class="empty-state panel-activity">
+            <p class="empty-state-text">Sin actividad reciente</p>
+            <p>La actividad de envíos y asignaciones aparecerá aquí.</p>
+        </div>
+    </aside>
+</div>
+{% endblock %}

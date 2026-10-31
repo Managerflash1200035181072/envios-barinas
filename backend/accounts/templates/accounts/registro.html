@@ -1,0 +1,28 @@
+{% extends 'accounts/base.html' %}
+{% block title %}Registro - SGAB{% endblock %}
+
+{% block content %}
+<div class="card card-register">
+    <div class="card-header">
+        <h2>Registro de usuario</h2>
+        <p>Crea tu cuenta para acceder al sistema de envíos</p>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+            <div class="alert alert-error">
+                {% for error in form.non_field_errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        {% endif %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary btn-block">Registrarse</button>
+    </form>
+
+    <p class="auth-link">
+        ¿Ya eres parte de SGAB? <a href="{% url 'login' %}">Accede a tu cuenta</a>
+    </p>
+</div>
+{% endblock %}
